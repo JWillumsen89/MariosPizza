@@ -1,6 +1,7 @@
 package mariosPizza.application.pizzaOrders;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class Order {
@@ -20,7 +21,7 @@ public class Order {
         return orderID;
     }
 
-    private LocalDate estimatedTimeOfFinish;
+    private LocalTime estimatedTimeOfFinish;
 
     private Status status;
 
@@ -39,34 +40,35 @@ public class Order {
     private final int pizzaIndex;
     public int getPizzaIndex() {return pizzaIndex;}
 
-    private final LocalDate created;
-    private LocalDate started;
-    private LocalDate finished;
+    private final LocalTime created;
+    private LocalTime started;
+    private LocalTime finished;
 
     public Order(Type type, int pizzaIndex) {
         this.pizzaIndex = pizzaIndex;
-        created = LocalDate.now();
+        created = LocalTime.now();
         status = Status.Pending;
+
         var duration = type == Type.Phone ? 60 : 10;
         estimatedTimeOfFinish = created.plus(duration,ChronoUnit.MINUTES);
         orderID++;
     }
 
-    public LocalDate getCreated() {return created;}
-    public LocalDate getStarted() {return started;}
-    public LocalDate getFinished() {return finished;}
+    public LocalTime getCreated() {return created;}
+    public LocalTime getStarted() {return started;}
+    public LocalTime getFinished() {return finished;}
 
-    public LocalDate getEstimated() {
+    public LocalTime getEstimated() {
         return created.plus(60, ChronoUnit.MINUTES);
     }
 
     public void setInProgress(){
-        started = LocalDate.now();
+        started = LocalTime.now();
         status = Status.InProgress;
     }
 
     public void setFinished(){
-        finished = LocalDate.now();
+        finished = LocalTime.now();
         status = Status.Done;
     }
 }

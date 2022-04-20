@@ -10,6 +10,12 @@ public class PizzaOrders {
     public List<Order> getOrdersInProgress(){return orders.stream().filter(o -> o.isInProgress()).toList();}
     public List<Order> getCompletedOrders(){return orders.stream().filter(o -> o.isDone()).toList();}
 
+    public List<Integer> getPizzaIndexesInProgress(){
+        return orders.stream()
+                .filter(o -> o.isInProgress())
+                .map(o -> o.getPizzaIndex()).toList();
+    }
+
     public Order getOrderByID(int id) throws OrderNotFoundException {
         var order = orders.stream()
                 .filter(o -> o.getOrderID() == id)
@@ -20,6 +26,7 @@ public class PizzaOrders {
     }
 
     public void createOrder(int pizzaIndex, boolean phone){
+
         var order = new OrderBuilder().build(pizzaIndex,phone);
         orders.add(order);
     }
