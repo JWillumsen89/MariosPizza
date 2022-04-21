@@ -1,9 +1,10 @@
 package mariosPizza.DataContext.pizzaOrders;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-public class Order implements Comparable<Order>{
+public class Order implements Comparable<Order>, Serializable {
     @Override
     public int compareTo(Order order) {
         var val = estimatedTimeOfFinish.compareTo(order.estimatedTimeOfFinish);

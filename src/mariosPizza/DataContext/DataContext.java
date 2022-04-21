@@ -11,7 +11,7 @@ public class DataContext {
     private PizzaOrders _pizzaOrders = new PizzaOrders();
     private PizzaContext _pizzaContext = new PizzaContext();
 
-    public List<Pizza> get_pizzas() {
+    public List<Pizza> getPizzas() {
         return _pizzaContext.getPizzas();
     }
 
@@ -43,5 +43,9 @@ public class DataContext {
         var indexes = _pizzaOrders.getPizzaIndexesInProgress();
         var pizzas = _pizzaContext.getPizzas(indexes);
         return pizzas;
+    }
+
+    public void saveOrders(){
+        _pizzaOrders.persist();
     }
 }

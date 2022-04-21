@@ -1,10 +1,20 @@
 package mariosPizza.DataContext.pizzaOrders;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PizzaOrders {
     private List<Order> orders = new ArrayList<>();
+    private PersistOrders persist = new PersistOrders();
+
+    public PizzaOrders(){
+        try {
+            orders = persist.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public List<Order> getPendingOrders()
     {
@@ -27,5 +37,13 @@ public class PizzaOrders {
     public void createOrder(int pizzaIndex, int duration){
         var order = new Order(pizzaIndex,duration);
         orders.add(order);
+    }
+
+    public void persist(){
+        try {
+            persist.save(orders);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

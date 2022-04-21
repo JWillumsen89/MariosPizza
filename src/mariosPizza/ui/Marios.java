@@ -23,10 +23,11 @@ public class Marios {
             userDecision();
         }
         ui.shuttingDown();
+        dataContext.saveOrders();
     }
 
     private void printPizzaMenu() {
-        var pizzas = dataContext.get_pizzas();
+        var pizzas = dataContext.getPizzas();
         printer.print(pizzas);
     }
 
