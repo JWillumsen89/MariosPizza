@@ -1,23 +1,22 @@
 package mariosPizza.ui;
 
 import mariosPizza.DataContext.DataContext;
-import mariosPizza.DataContext.pizzaMenu.Pizza;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Marios {
-    private List<Pizza> pizzas = new ArrayList<>();
-    PrintPizzaMenu printer = new PrintPizzaMenu();
     boolean programRunning = true;
     private final Scanner in = new Scanner(System.in);
-    DataContext dataContext = new DataContext();
-    UI ui = new UI();
+    private final DataContext dataContext;
+    private final UI ui;
+
+    public Marios() {
+        dataContext = new DataContext();
+        ui = new UI(dataContext);
+    }
 
     public void run() {
-
         ui.welcomeMessage();
-        printPizzaMenu();
+        ui.printPizzaMenu();
         while(programRunning) {
             ui.helpMenu();
             userDecision();
@@ -26,24 +25,17 @@ public class Marios {
         dataContext.saveOrders();
     }
 
-    private void printPizzaMenu() {
-        var pizzas = dataContext.getPizzas();
-        printer.print(pizzas);
-    }
-
     public void userDecision() {
         System.out.print("\nWhat do you want to do: ");
         int decision = in.nextInt();
         System.out.println();
         switch (decision) {
-            case 1 -> {
-                printPizzaMenu();
-                ui.createNewOrder(dataContext);
-            }
+            case 1 -> ui.createNewOrder();
             case 2 -> ui.printOrders();
             case 3 -> System.out.println("Change order status");
-            case 4 -> printPizzaMenu();
-            case 5 -> programRunning = false;
+            case 4 -> ui.printPizzaMenu();
+            case 5 -> ui.removeOrder();
+            case 6 -> programRunning = false;
         }
     }
 }

@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 public class UI {
     Scanner in = new Scanner(System.in);
+    private final DataContext dataContext;
+    PrintOrderMenu printOrderMenu = new PrintOrderMenu();
+    PrintPizzaMenu printPizzaMenu = new PrintPizzaMenu();
+
+    public UI(DataContext dataContext) {
+        this.dataContext = dataContext;
+    }
 
     public void helpMenu() {
         System.out.println("""
@@ -13,7 +20,8 @@ public class UI {
         [2] Print list of orders
         [3] Change order status
         [4] Show menu card
-        [5] Exit program""");
+        [5] Cancel order
+        [6] Exit program""");
     }
 
     public void welcomeMessage() {
@@ -37,36 +45,35 @@ public class UI {
             """);
     }
 
-    public void createNewOrder(DataContext app) {
+    public void createNewOrder() {
+        printPizzaMenu();
         System.out.println(" ");
         System.out.print("Pick a pizza: ");
         int pizzaIndex = in.nextInt();
         System.out.print("How many minutes to pick up: ");
         int duration = in.nextInt();
-        app.createOrder(pizzaIndex, duration);
+        dataContext.createOrder(pizzaIndex, duration);
     }
 
-   /*
-   public void removeOrder() {
-        System.out.println(" ");
-        System.out.println("Remove order: ");
-        //int input = in.nextInt();
+    public void printPizzaMenu() {
+        var pizzas = dataContext.getPizzas();
+        printPizzaMenu.print(pizzas);
     }
-    */
+
+   public void removeOrder() {
+        printOrders();
+        System.out.println(" ");
+        System.out.print("Remove order: ");
+        int orderID = in.nextInt();
+        dataContext.removeOrder(orderID);
+    }
 
     public void printOrders() {
-
-        System.out.println("--------------------------------------------------Order List--------------------------------------------------");
-
-        /*for (int i = 0; i < orderList.size(); i++) {
-            System.out.println(orderList.get(i));
-        }
-         */
+        var orders = dataContext.getPendingOrders();
+        printOrderMenu.print(orders);
     }
 
     public void shuttingDown() {
-        System.out.println("""
-            PROGRAM SHUTTING DOWN!
-            """);
+        System.out.println("PROGRAM SHUTTING DOWN!");
     }
 }

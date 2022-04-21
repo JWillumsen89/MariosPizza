@@ -13,7 +13,7 @@ public class PrintOrderMenu {
             var order = orders.get(i);
             var orderID = order.getOrderID();
             var formatter = DateTimeFormatter.ofPattern("HH:mm");
-            var orderTime = order.getCreated().format(formatter);
+            var orderTime = order.getEstimated().format(formatter);
             var pizzaIndex = order.getPizzaIndex();
             var str = String.format("(%d) Pizza: %-15d  ETA: %s",
                     orderID,pizzaIndex,orderTime);
@@ -23,6 +23,10 @@ public class PrintOrderMenu {
     }
 
     public void print(List<Order> orders){
+        if(orders.isEmpty()){
+            System.out.println("No pending orders");
+            return;
+        }
         var strings = toStrings(orders);
         for (var str : strings)
             System.out.println(str);

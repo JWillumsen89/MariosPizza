@@ -39,6 +39,10 @@ public class PizzaOrders {
         orders.add(order);
     }
 
+    public void removeOrder(int orderID){
+        orders.removeIf(g -> g.getOrderID() == orderID);
+    }
+
     public void persist(){
         try {
             persist.save(orders);

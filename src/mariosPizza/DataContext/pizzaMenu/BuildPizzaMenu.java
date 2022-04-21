@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuildPizzaMenu {
-
     public List<Pizza> build(){
         var pizzas = new ArrayList<Pizza>();
         Pizza p1 = new Pizza( "Vesuvio", "Tomat, Ost, Skinke, Oregano", 57);

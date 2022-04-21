@@ -71,7 +71,7 @@ public class Order implements Comparable<Order>, Serializable {
     public LocalTime getFinished() {return finished;}
 
     public LocalTime getEstimated() {
-        return created.plus(60, ChronoUnit.MINUTES);
+        return estimatedTimeOfFinish;
     }
 
     public void setInProgress(){

@@ -45,6 +45,10 @@ public class DataContext {
         return pizzas;
     }
 
+    public void removeOrder(int orderID){
+        _pizzaOrders.removeOrder(orderID);
+    }
+
     public void saveOrders(){
         _pizzaOrders.persist();
     }
