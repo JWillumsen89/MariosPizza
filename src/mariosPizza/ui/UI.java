@@ -1,6 +1,11 @@
 package mariosPizza.ui;
 
+import mariosPizza.application.Application;
+
+import java.util.Scanner;
+
 public class UI {
+    Scanner in = new Scanner(System.in);
 
     public UI(Marios marios) {
         //this.marios = marios;
@@ -18,19 +23,20 @@ public class UI {
 
     }
 
-    public void createNewOrder() {
-        /*
+    public void createNewOrder(Application app) {
+
         System.out.println("");
         System.out.print("Pick a pizza: ");
-        int input = in.nextInt() - 1;
-        System.out.println("Decide pick up time [HH:mm]: ");
-        double time = 10.10;
-        System.out.println();
-        String order = "#" + idNum + " - " + (marios.pz.pizzaList.get(input) + ". PICK UP TIME: 10:35");
-        System.out.println(marios.pz.pizzaList.get(input));
-        orderList.add(order);
-        idNum++;
-         */
+        int pizzaIndex = in.nextInt();
+        System.out.print("How many minutes to pick up: ");
+        int duration = in.nextInt();
+        //String order = "#" + idNum + " - " + (marios.pz.pizzaList.get(input) + ". PICK UP TIME: 10:35");
+        //System.out.println(marios.pz.pizzaList.get(input));
+        //orderList.add(order);
+        //idNum++;
+
+        app.createOrder(pizzaIndex, duration);
+
     }
 
     public void removeOrder() {

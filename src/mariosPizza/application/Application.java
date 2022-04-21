@@ -11,6 +11,9 @@ public class Application {
     private PizzaOrders _pizzaOrders = new PizzaOrders();
     private PizzaContext _pizzaContext = new PizzaContext();
 
+    public List<Pizza> get_pizzas() {
+        return _pizzaContext.getPizzas();
+    }
 
     public List<Order> getPendingOrders(){
         return _pizzaOrders.getPendingOrders();
