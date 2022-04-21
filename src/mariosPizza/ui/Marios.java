@@ -20,7 +20,7 @@ public class Marios {
     private boolean programRunning = true;
     private Scanner in = new Scanner(System.in);
     Application app = new Application();
-    UI ui = new UI(this);
+    UI ui = new UI();
 
     private void initPizzaMenu() {
         var builder = new BuildPizzaMenu();
@@ -29,7 +29,8 @@ public class Marios {
 
     public void run() {
 
-
+        ui.welcomeMessage();
+        printPizzaMenu();
         while(programRunning) {
             ui.helpMenu();
             userDecision();
@@ -51,7 +52,8 @@ public class Marios {
                 ui.createNewOrder(app);
             }
             case 2 -> ui.printOrders();
-
+            case 3 -> System.out.println("Change order status");
+            case 4 -> printPizzaMenu();
         }
     }
 }
