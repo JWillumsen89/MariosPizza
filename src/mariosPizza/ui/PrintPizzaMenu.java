@@ -14,7 +14,7 @@ public class PrintPizzaMenu {
             var topping = pizza.topping;
             var price = pizza.price;
             var index = pizza.pizzaIndex;
-            String str = String.format("(%d) %s - %s - %d", index,name,topping,price);
+            String str = String.format("(%d) %-15s %-75s %3d", index,name,topping,price);
             strings.add(str);
         }
         return strings;
