@@ -26,7 +26,6 @@ public class PizzaOrders {
     }
 
     public void createOrder(int pizzaIndex, int duration){
-
         var order = new Order(pizzaIndex,duration);
         orders.add(order);
     }
