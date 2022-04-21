@@ -6,7 +6,12 @@ import java.util.List;
 public class PizzaOrders {
     private List<Order> orders = new ArrayList<>();
 
-    public List<Order> getPendingOrders(){return orders.stream().filter(o -> o.isPending()).toList();}
+    public List<Order> getPendingOrders(){
+        return orders.stream()
+                .filter(o -> o.isPending())
+                .sorted()
+                .toList();
+    }
     public List<Order> getOrdersInProgress(){return orders.stream().filter(o -> o.isInProgress()).toList();}
     public List<Order> getCompletedOrders(){return orders.stream().filter(o -> o.isDone()).toList();}
 

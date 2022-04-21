@@ -3,7 +3,23 @@ package mariosPizza.application.pizzaOrders;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
-public class Order {
+public class Order implements Comparable<Order>{
+    @Override
+    public int compareTo(Order order) {
+        var val = estimatedTimeOfFinish.compareTo(order.estimatedTimeOfFinish);
+        if(val > 0)
+            return 1;
+        else if(val == 0)
+        {
+            if(pizzaIndex < order.pizzaIndex)
+                return 1;
+            else
+                return -1;
+        }
+        else
+            return -1;
+    }
+
     public enum Status {
         Pending,
         InProgress,
