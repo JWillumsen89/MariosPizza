@@ -16,11 +16,10 @@ public class Marios {
 
     private List<Pizza> pizzas = new ArrayList<>();
     PrintPizzaMenu printer = new PrintPizzaMenu();
-
-    private boolean programRunning = true;
-    private Scanner in = new Scanner(System.in);
+    boolean programRunning = true;
+    private final Scanner in = new Scanner(System.in);
     Application app = new Application();
-    UI ui = new UI(this);
+    UI ui = new UI();
 
     private void initPizzaMenu() {
         var builder = new BuildPizzaMenu();
@@ -29,11 +28,13 @@ public class Marios {
 
     public void run() {
 
-
+        ui.welcomeMessage();
+        printPizzaMenu();
         while(programRunning) {
             ui.helpMenu();
             userDecision();
         }
+        ui.shuttingDown();
     }
 
     private void printPizzaMenu() {
@@ -51,7 +52,9 @@ public class Marios {
                 ui.createNewOrder(app);
             }
             case 2 -> ui.printOrders();
-
+            case 3 -> System.out.println("Change order status");
+            case 4 -> printPizzaMenu();
+            case 5 -> programRunning = false;
         }
     }
 }
