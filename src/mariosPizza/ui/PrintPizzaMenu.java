@@ -1,6 +1,6 @@
 package mariosPizza.ui;
 
-import mariosPizza.application.pizzaMenu.Pizza;
+import mariosPizza.DataContext.pizzaMenu.Pizza;
 
 import java.util.ArrayList;
 import java.util.List;

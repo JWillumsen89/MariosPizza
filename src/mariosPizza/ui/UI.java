@@ -1,13 +1,10 @@
 package mariosPizza.ui;
 
-import mariosPizza.application.Application;
-
+import mariosPizza.DataContext.DataContext;
 import java.util.Scanner;
 
 public class UI {
     Scanner in = new Scanner(System.in);
-
-    public UI() {}
 
     public void helpMenu() {
         System.out.println("""
@@ -17,7 +14,6 @@ public class UI {
         [3] Change order status
         [4] Show menu card
         [5] Exit program""");
-
     }
 
     public void welcomeMessage() {
@@ -41,24 +37,21 @@ public class UI {
             """);
     }
 
-    public void createNewOrder(Application app) {
-
+    public void createNewOrder(DataContext app) {
         System.out.println(" ");
         System.out.print("Pick a pizza: ");
         int pizzaIndex = in.nextInt();
         System.out.print("How many minutes to pick up: ");
         int duration = in.nextInt();
-
         app.createOrder(pizzaIndex, duration);
-
     }
 
-   /* public void removeOrder() {
+   /*
+   public void removeOrder() {
         System.out.println(" ");
         System.out.println("Remove order: ");
         //int input = in.nextInt();
     }
-
     */
 
     public void printOrders() {
@@ -76,5 +69,4 @@ public class UI {
             PROGRAM SHUTTING DOWN!
             """);
     }
-
 }

@@ -1,6 +1,6 @@
 package mariosPizza.ui;
 
-import mariosPizza.application.pizzaOrders.Order;
+import mariosPizza.DataContext.pizzaOrders.Order;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

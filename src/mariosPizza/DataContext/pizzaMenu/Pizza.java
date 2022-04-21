@@ -1,4 +1,4 @@
-package mariosPizza.application.pizzaMenu;
+package mariosPizza.DataContext.pizzaMenu;
 
 public class Pizza {
     private static int index = 1;

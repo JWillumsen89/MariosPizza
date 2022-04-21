@@ -1,4 +1,4 @@
-package mariosPizza.application.pizzaMenu;
+package mariosPizza.DataContext.pizzaMenu;
 
 import java.util.List;
 

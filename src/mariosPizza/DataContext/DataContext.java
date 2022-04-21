@@ -1,13 +1,13 @@
-package mariosPizza.application;
+package mariosPizza.DataContext;
 
-import mariosPizza.application.pizzaMenu.Pizza;
-import mariosPizza.application.pizzaMenu.PizzaContext;
-import mariosPizza.application.pizzaOrders.Order;
-import mariosPizza.application.pizzaOrders.OrderNotFoundException;
-import mariosPizza.application.pizzaOrders.PizzaOrders;
+import mariosPizza.DataContext.pizzaMenu.Pizza;
+import mariosPizza.DataContext.pizzaMenu.PizzaContext;
+import mariosPizza.DataContext.pizzaOrders.Order;
+import mariosPizza.DataContext.pizzaOrders.OrderNotFoundException;
+import mariosPizza.DataContext.pizzaOrders.PizzaOrders;
 import java.util.List;
 
-public class Application {
+public class DataContext {
     private PizzaOrders _pizzaOrders = new PizzaOrders();
     private PizzaContext _pizzaContext = new PizzaContext();
 

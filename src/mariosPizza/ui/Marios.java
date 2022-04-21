@@ -1,30 +1,18 @@
 package mariosPizza.ui;
 
-import mariosPizza.application.Application;
-import mariosPizza.application.pizzaMenu.BuildPizzaMenu;
-import mariosPizza.application.pizzaMenu.Pizza;
-
+import mariosPizza.DataContext.DataContext;
+import mariosPizza.DataContext.pizzaMenu.Pizza;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Marios {
-
-    public Marios() {
-        initPizzaMenu();
-    }
-
     private List<Pizza> pizzas = new ArrayList<>();
     PrintPizzaMenu printer = new PrintPizzaMenu();
     boolean programRunning = true;
     private final Scanner in = new Scanner(System.in);
-    Application app = new Application();
+    DataContext dataContext = new DataContext();
     UI ui = new UI();
-
-    private void initPizzaMenu() {
-        var builder = new BuildPizzaMenu();
-        this.pizzas = builder.build();
-    }
 
     public void run() {
 
@@ -38,7 +26,7 @@ public class Marios {
     }
 
     private void printPizzaMenu() {
-        var pizzas = app.get_pizzas();
+        var pizzas = dataContext.get_pizzas();
         printer.print(pizzas);
     }
 
@@ -49,7 +37,7 @@ public class Marios {
         switch (decision) {
             case 1 -> {
                 printPizzaMenu();
-                ui.createNewOrder(app);
+                ui.createNewOrder(dataContext);
             }
             case 2 -> ui.printOrders();
             case 3 -> System.out.println("Change order status");

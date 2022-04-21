@@ -1,4 +1,4 @@
-package mariosPizza.application.pizzaOrders;
+package mariosPizza.DataContext.pizzaOrders;
 
 public class OrderNotFoundException extends Exception{
 }

@@ -1,4 +1,4 @@
-package mariosPizza.application.pizzaMenu;
+package mariosPizza.DataContext.pizzaMenu;
 
 public class PizzaNotFoundException extends Exception{
     private int index;
