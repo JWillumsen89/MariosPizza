@@ -9,52 +9,19 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 public class BuildPizzaMenu {
-    private FileReader setupReader(){
-        FileReader reader = null;
-        try {
-            reader = new FileReader("resources/Pizzas.txt");
-        } catch (FileNotFoundException e) {
-            return null;
-        }
-        return reader;
-    }
-
-    private String extractDataAsString(FileReader reader) {
-        var sb = new StringBuilder();
-        int i;
-        try {
-            while ((i = reader.read()) != -1)
-                sb.append((char) i);
-        } catch (IOException e){
-            return "";
-        }
-        return sb.toString();
-    }
-
-    private List<String> extractNames(String data){
-        if(data.isEmpty())
-            new ArrayList<>();
-        var pat = Pattern.compile("[A-z 0-9.]+");
-        var matcher = pat.matcher(data);
-        var pizzas = matcher.results()
-                .map(r -> r.group()).toList();
-        return pizzas;
-    }
-
-    private List<Pizza> createPizzas(List<String> names){
-        var pizzas = names.stream()
-                .map(n -> {
-                    var duration = new Random().nextInt(15) + 5;
-                    return new Pizza(n,duration);
-                }).toList();
-        return pizzas;
-    }
 
     public List<Pizza> build(){
-        var reader = setupReader();
-        var pizzaNames = extractDataAsString(reader);
-        var names = extractNames(pizzaNames);
-        var pizzas = createPizzas(names);
+        var pizzas = new ArrayList<Pizza>();
+        Pizza p1 = new Pizza( "Vesuvio", "Tomat, Ost, Skinke, Oregano", 57);
+        Pizza p2 = new Pizza( "Amerikaner", "Tomat, Ost, Oksefars, Oregano", 53);
+        Pizza p3 = new Pizza( "Cacciatore", "Tomat, Ost, Pepperoni, Oregano", 57);
+        Pizza p4 = new Pizza( "Carbona", "Tomat, Ost, Kødsovs, Spaghetti, Cocktailpølser, Oregano", 63);
+        Pizza p5 = new Pizza( "Dennis", "Tomat, Ost, Skinke, Pepperoni, Cocktailpølser, Oregano", 65);
+        pizzas.add(p1);
+        pizzas.add(p2);
+        pizzas.add(p3);
+        pizzas.add(p4);
+        pizzas.add(p5);
         return pizzas;
     }
 }

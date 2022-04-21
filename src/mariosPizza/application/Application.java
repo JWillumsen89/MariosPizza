@@ -24,8 +24,8 @@ public class Application {
         return _pizzaOrders.getCompletedOrders();
     }
 
-    public void createOrder(int pizzaIndex, boolean phone){
-        _pizzaOrders.createOrder(pizzaIndex,phone);
+    public void createOrder(int pizzaIndex, int duration){
+        _pizzaOrders.createOrder(pizzaIndex, duration);
     }
 
     public void startOrder(int orderID) throws OrderNotFoundException {

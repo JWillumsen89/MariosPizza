@@ -25,9 +25,9 @@ public class PizzaOrders {
         throw new OrderNotFoundException();
     }
 
-    public void createOrder(int pizzaIndex, boolean phone){
+    public void createOrder(int pizzaIndex, int duration){
 
-        var order = new OrderBuilder().build(pizzaIndex,phone);
+        var order = new Order(pizzaIndex,duration);
         orders.add(order);
     }
 }

@@ -1,6 +1,5 @@
 package mariosPizza.application.pizzaOrders;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
@@ -11,14 +10,12 @@ public class Order {
         Done
     }
 
-    public enum Type {
-        Phone,
-        WalkIn
-    }
+    private static int instanceIndex = 1;
 
-    private static int orderID = 0;
+    private int orderID;
+
     public int getOrderID() {
-        return orderID;
+        return instanceIndex;
     }
 
     private LocalTime estimatedTimeOfFinish;
@@ -44,14 +41,12 @@ public class Order {
     private LocalTime started;
     private LocalTime finished;
 
-    public Order(Type type, int pizzaIndex) {
+    public Order(int pizzaIndex, int duration) {
         this.pizzaIndex = pizzaIndex;
         created = LocalTime.now();
         status = Status.Pending;
-
-        var duration = type == Type.Phone ? 60 : 10;
         estimatedTimeOfFinish = created.plus(duration,ChronoUnit.MINUTES);
-        orderID++;
+        orderID = instanceIndex++;
     }
 
     public LocalTime getCreated() {return created;}
