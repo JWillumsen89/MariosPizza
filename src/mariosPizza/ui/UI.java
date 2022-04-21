@@ -7,9 +7,6 @@ import java.util.Scanner;
 public class UI {
     Scanner in = new Scanner(System.in);
 
-    public UI(Marios marios) {
-        //this.marios = marios;
-    }
     public UI() {}
 
     public void helpMenu() {
@@ -18,7 +15,8 @@ public class UI {
         [1] Create new order
         [2] Print list of orders
         [3] Change order status
-        [4] Show menu card""");
+        [4] Show menu card
+        [5] Exit program""");
 
     }
 
@@ -45,7 +43,7 @@ public class UI {
 
     public void createNewOrder(Application app) {
 
-        System.out.println("");
+        System.out.println(" ");
         System.out.print("Pick a pizza: ");
         int pizzaIndex = in.nextInt();
         System.out.print("How many minutes to pick up: ");
@@ -55,11 +53,13 @@ public class UI {
 
     }
 
-    public void removeOrder() {
-        System.out.println("");
+   /* public void removeOrder() {
+        System.out.println(" ");
         System.out.println("Remove order: ");
         //int input = in.nextInt();
     }
+
+    */
 
     public void printOrders() {
 
@@ -69,6 +69,12 @@ public class UI {
             System.out.println(orderList.get(i));
         }
          */
+    }
+
+    public void shuttingDown() {
+        System.out.println("""
+            PROGRAM SHUTTING DOWN!
+            """);
     }
 
 }

@@ -16,9 +16,8 @@ public class Marios {
 
     private List<Pizza> pizzas = new ArrayList<>();
     PrintPizzaMenu printer = new PrintPizzaMenu();
-
-    private boolean programRunning = true;
-    private Scanner in = new Scanner(System.in);
+    boolean programRunning = true;
+    private final Scanner in = new Scanner(System.in);
     Application app = new Application();
     UI ui = new UI();
 
@@ -35,6 +34,7 @@ public class Marios {
             ui.helpMenu();
             userDecision();
         }
+        ui.shuttingDown();
     }
 
     private void printPizzaMenu() {
@@ -54,6 +54,7 @@ public class Marios {
             case 2 -> ui.printOrders();
             case 3 -> System.out.println("Change order status");
             case 4 -> printPizzaMenu();
+            case 5 -> programRunning = false;
         }
     }
 }
