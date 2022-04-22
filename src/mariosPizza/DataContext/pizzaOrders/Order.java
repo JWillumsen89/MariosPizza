@@ -32,7 +32,7 @@ public class Order implements Comparable<Order>, Serializable {
     private int orderID;
 
     public int getOrderID() {
-        return instanceIndex;
+        return orderID;
     }
 
     private LocalTime estimatedTimeOfFinish;
