@@ -17,18 +17,17 @@ public class Marios {
 
   public void run() {
     ui.welcomeMessage();
+    ui.helpMenu(false);
     while (programRunning) {
-      ui.helpMenu();
       userDecision();
+      ui.helpMenu(false);
     }
     ui.shuttingDown();
     dataContext.saveOrders();
   }
   
   public void userDecision() {
-    System.out.print("\nWhat do you want to do: ");
     int decision = in.nextInt();
-    System.out.println();
     switch (decision) {
       case 1 -> {
         ui.createNewOrder();

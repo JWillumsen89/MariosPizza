@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrintPizzaMenu {
+
+    private void lineSpace() {
+        LineSpacing lines = new LineSpacing();
+        lines.lines();
+    }
     private List<String> formatPizzaStrings(List<Pizza> pizzas){
         var strings = new ArrayList<String>();
         for (var i = 0;i < pizzas.size();i++){

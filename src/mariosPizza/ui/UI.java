@@ -21,22 +21,26 @@ public class UI {
     }
 
   public void lineSpace() {
-    LineSpacing lines = new LineSpacing();
-    lines.lines();
+        LineSpacing lines = new LineSpacing();
+        lines.lines();
   }
   private void newLine() {
     System.out.println();
 
   }
 
-    public void helpMenu() {
-      lineSpace();
-      System.out.println(yellow+"---------------------------------------------------------------MENU-------------------------------------------------------------------------------------"+fReset);
-      System.out.println("[1] Create new order  |  [2] Print list of orders  |   [3] Show menu card  |   [4] Cancel order  |  [5] Change order status(BETA)   |  [6] Exit program ");
-      newLine();
+    public void helpMenu(boolean anchorToBottom) {
+        /*
+        if(anchorToBottom)
+            lineSpace();
+         */
+        System.out.println(yellow+"---------------------------------------------------------------MENU-------------------------------------------------------------------------------------"+fReset);
+        System.out.println("[1] Create new order  |  [2] Print list of orders  |   [3] Show menu card  |   [4] Cancel order  |  [5] Change order status(BETA)   |  [6] Exit program ");
+        newLine();
     }
 
     public void welcomeMessage() {
+        lineSpace();
         System.out.println("""
               __  __            _             _____ _              _               \s
              |  \\/  |          (_)           |  __ (_)            | |              \s
@@ -68,6 +72,7 @@ public class UI {
     }
 
     public void printPizzaMenu() {
+        lineSpace();
         var pizzas = dataContext.getPizzas();
         printPizzaMenu.print(pizzas);
     }
