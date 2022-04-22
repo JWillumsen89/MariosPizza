@@ -3,7 +3,13 @@ package mariosPizza.ui;
 import mariosPizza.DataContext.DataContext;
 import java.util.Scanner;
 
+
 public class UI {
+  public String fReset = "\u001B[0m";
+  public String green = "\u001B[32m";
+  public String blue = "\u001B[34m";
+  public String yellow = "\u001B[33m";
+  public String red = "\u001B[31m";
     Scanner in = new Scanner(System.in);
     private final DataContext dataContext;
     PrintOrderMenu printOrderMenu = new PrintOrderMenu();
@@ -11,17 +17,23 @@ public class UI {
 
     public UI(DataContext dataContext) {
         this.dataContext = dataContext;
+
     }
 
   public void lineSpace() {
     LineSpacing lines = new LineSpacing();
     lines.lines();
   }
+  private void newLine() {
+    System.out.println();
+
+  }
 
     public void helpMenu() {
       lineSpace();
-      System.out.println("---------------------------------------------------------------MENU-------------------------------------------------------------------------------------");
+      System.out.println(yellow+"---------------------------------------------------------------MENU-------------------------------------------------------------------------------------"+fReset);
       System.out.println("[1] Create new order  |  [2] Print list of orders  |   [3] Show menu card  |   [4] Cancel order  |  [5] Change order status(BETA)   |  [6] Exit program ");
+      newLine();
     }
 
     public void welcomeMessage() {
@@ -63,7 +75,7 @@ public class UI {
    public void removeOrder() {
         printOrders();
         System.out.println(" ");
-        System.out.print("Remove order: ");
+        System.out.print(red+"Remove order: "+fReset);
         int orderID = in.nextInt();
         dataContext.removeOrder(orderID);
     }
@@ -74,6 +86,6 @@ public class UI {
     }
 
     public void shuttingDown() {
-        System.out.println("PROGRAM SHUTTING DOWN!");
+        System.out.println(red+"PROGRAM SHUTTING DOWN!"+fReset);
     }
 }
