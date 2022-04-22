@@ -13,15 +13,15 @@ public class UI {
         this.dataContext = dataContext;
     }
 
+  public void lineSpace() {
+    LineSpacing lines = new LineSpacing();
+    lines.lines();
+  }
+
     public void helpMenu() {
-        System.out.println("""
-                
-        [1] Create new order
-        [2] Print list of orders
-        [3] Change order status
-        [4] Show menu card
-        [5] Cancel order
-        [6] Exit program""");
+      lineSpace();
+      System.out.println("---------------------------------------------------------------MENU-------------------------------------------------------------------------------------");
+      System.out.println("[1] Create new order  |  [2] Print list of orders  |   [3] Show menu card  |   [4] Cancel order  |  [5] Change order status(BETA)   |  [6] Exit program ");
     }
 
     public void welcomeMessage() {
