@@ -8,13 +8,15 @@ public class PersistOrders {
     private final String _FILE = "Orders.ser";
 
     public void save(List<Order> orders) throws IOException {
-        var file = new File(_FILE);
-        if(file.exists()){
-            FileOutputStream fileOut = new FileOutputStream(_FILE);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(orders);
-            out.close();
+        FileOutputStream fileOut = null;
+        try {
+            fileOut = new FileOutputStream(_FILE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(orders);
+        out.close();
     }
 
     public List<Order> read() throws IOException {
