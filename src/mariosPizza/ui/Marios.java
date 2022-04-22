@@ -27,20 +27,23 @@ public class Marios {
   }
   
   public void userDecision() {
-    int decision = in.nextInt();
+    String decision = in.nextLine();
     switch (decision) {
-      case 1 -> {
+      case "1" -> {
         ui.createNewOrder();
         ui.printOrders();
       }
-      case 2 -> ui.printOrders();
-      case 3 -> ui.printPizzaMenu();
-      case 4 -> {
+      case "2" -> ui.printOrders();
+      case "3" -> ui.printPizzaMenu();
+      case "4" -> {
         ui.removeOrder();
         ui.printOrders();
       }
-      case 5 -> System.out.println("Change order status");
-      case 6 -> programRunning = false;
+      case "5" -> System.out.println("Change order status");
+      case "6" -> programRunning = false;
+      default -> {
+        ui.lineSpace();
+        System.out.println(ui.red+"----Wrong input----\n"+ui.fReset);}
     }
   }
 }
