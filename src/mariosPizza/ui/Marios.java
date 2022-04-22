@@ -2,6 +2,7 @@ package mariosPizza.ui;
 
 import mariosPizza.DataContext.DataContext;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Marios {
@@ -27,21 +28,23 @@ public class Marios {
 
   public void userDecision() {
     System.out.print("\nWhat do you want to do: ");
-    int decision = in.nextInt();
+    //int decision = in.nextInt();
+    String decision = in.nextLine();
     System.out.println();
     switch (decision) {
-      case 1 -> {
+      case "1" -> {
         ui.createNewOrder();
         ui.printOrders();
       }
-      case 2 -> ui.printOrders();
-      case 3 -> ui.printPizzaMenu();
-      case 4 -> {
+      case "2" -> ui.printOrders();
+      case "3" -> ui.printPizzaMenu();
+      case "4" -> {
         ui.removeOrder();
         ui.printOrders();
       }
-      case 5 -> System.out.println("Change order status");
-      case 6 -> programRunning = false;
+      case "5" -> System.out.println("Change order status");
+      case "6" -> programRunning = false;
+      default -> System.out.println("Wrong input, Try again!");
     }
   }
 }
