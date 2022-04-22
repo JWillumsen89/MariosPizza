@@ -64,9 +64,9 @@ public class UI {
     public void createNewOrder() {
         printPizzaMenu();
         System.out.println(" ");
-        System.out.print("Pick a pizza: ");
+        System.out.print("Pick a pizza from menu: \n");
         int pizzaIndex = in.nextInt();
-        System.out.print("How many minutes to pick up: ");
+        System.out.print("How many minutes in the making: \n");
         int duration = in.nextInt();
         dataContext.createOrder(pizzaIndex, duration);
     }
@@ -80,7 +80,7 @@ public class UI {
    public void removeOrder() {
         printOrders();
         System.out.println(" ");
-        System.out.print(red+"Remove order: "+fReset);
+        System.out.print(red+"Remove order: \n"+fReset);
         int orderID = in.nextInt();
         dataContext.removeOrder(orderID);
     }

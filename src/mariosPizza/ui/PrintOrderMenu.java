@@ -19,21 +19,33 @@ public class PrintOrderMenu {
             var formatter = DateTimeFormatter.ofPattern("HH:mm");
             var orderTime = order.getEstimated().format(formatter);
             var pizzaIndex = order.getPizzaIndex();
-            System.out.println(green+"PENDING ORDERS\n"+fReset);
-            var str = String.format("(%d) Pizza: %-15d  ETA: %s",
+            newLine();
+            lineSpace();
+            System.out.println(green+"\nPENDING ORDERS\n"+fReset+"---------------------------------------");
+            var str = String.format("(%d) Pizza: %-15d  ETA: %s\n\n",
                     orderID,pizzaIndex,orderTime);
             strings.add(str);
+
         }
         return strings;
+    }
+    private void newLine() {
+        System.out.println();
+
     }
 
     public void print(List<Order> orders){
         if(orders.isEmpty()){
-            System.out.println(red+"No pending orders at the moment!"+fReset);
+            lineSpace();
+            System.out.println(red+"                                 -----------------No pending orders at the moment!------------------\n"+fReset);
             return;
         }
         var strings = toStrings(orders);
         for (var str : strings)
             System.out.println(str);
+    }
+    public void lineSpace() {
+        LineSpacing lines = new LineSpacing();
+        lines.lines();
     }
 }
