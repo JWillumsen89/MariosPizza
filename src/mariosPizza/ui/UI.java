@@ -29,11 +29,7 @@ public class UI {
 
   }
 
-    public void helpMenu(boolean anchorToBottom) {
-        /*
-        if(anchorToBottom)
-            lineSpace();
-         */
+    public void helpMenu() {
         System.out.println(yellow+"---------------------------------------------------------------MENU-------------------------------------------------------------------------------------"+fReset);
         System.out.println("[1] Create new order  |  [2] Print list of orders  |   [3] Show menu card  |   [4] Cancel order  |  [5] Change order status(BETA)   |  [6] Exit program ");
         newLine();

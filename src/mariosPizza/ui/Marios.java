@@ -15,15 +15,19 @@ public class Marios {
     ui = new UI(dataContext);
   }
 
-  public void run() {
-    ui.welcomeMessage();
-    ui.helpMenu(false);
-    while (programRunning) {
-      userDecision();
-      ui.helpMenu(false);
-    }
+  private void shutDown(){
     ui.shuttingDown();
     dataContext.saveOrders();
+    System.exit(0);
+  }
+
+  public void run() {
+    ui.welcomeMessage();
+    ui.helpMenu();
+    while (true) {
+      userDecision();
+      ui.helpMenu();
+    }
   }
   
   public void userDecision() {
@@ -40,7 +44,7 @@ public class Marios {
         ui.printOrders();
       }
       case "5" -> System.out.println("Change order status");
-      case "6" -> programRunning = false;
+      case "6" -> shutDown();
       default -> {
         ui.lineSpace();
         System.out.println(ui.red+"----Wrong input----\n"+ui.fReset);}
