@@ -9,7 +9,7 @@ public class PersistOrders {
 
     public void save(List<Order> orders) throws IOException {
         var file = new File(_FILE);
-        if(!file.exists()){
+        if(file.exists()){
             FileOutputStream fileOut = new FileOutputStream(_FILE);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(orders);
