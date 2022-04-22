@@ -26,7 +26,7 @@ public class Marios {
     }
 
     public void userDecision() {
-        System.out.print("\nWhat do you want to do: ");
+        //System.out.print("\nWhat do you want to do: ");
         int decision = in.nextInt();
         System.out.println();
         switch (decision) {
