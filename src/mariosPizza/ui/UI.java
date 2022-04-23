@@ -2,7 +2,6 @@ package mariosPizza.ui;
 
 import mariosPizza.DataContext.DataContext;
 import mariosPizza.DataContext.pizzaOrders.OrderNotFoundException;
-
 import java.util.Scanner;
 
 public class UI {
@@ -11,16 +10,17 @@ public class UI {
     private final String blue = "\u001B[34m";
     private final String yellow = "\u001B[33m";
     private final String red = "\u001B[31m";
+    private final String defColor = "\u001B[39m";
+    private final String blinkingCSI = "\u001B[6m";
     private final Scanner in = new Scanner(System.in);
     private final DataContext dataContext;
     private final PrintOrderMenu printOrderMenu = new PrintOrderMenu();
     private final PrintPizzaMenu printPizzaMenu = new PrintPizzaMenu();
     private final PrintMenuOperations printMenu = new PrintMenuOperations();
-    private final PrintBlankScreen printBlankScren = new PrintBlankScreen();
+    private final PrintBlankScreen printBlankScreen = new PrintBlankScreen();
 
     public UI(DataContext dataContext) {
         this.dataContext = dataContext;
-
     }
 
     public void printMenu() {
@@ -28,7 +28,7 @@ public class UI {
     }
 
     public void welcomeMessage() {
-        printBlankScren.print();
+        printBlankScreen.print();
         System.out.println("""
               __  __            _             _____ _              _               \s
              |  \\/  |          (_)           |  __ (_)            | |              \s
@@ -50,21 +50,33 @@ public class UI {
     }
 
     public void createNewOrder() {
-        printPizzaMenu();
         System.out.print("Pick a pizza from menu: ");
-        int pizzaIndex = in.nextInt();
+        var input = in.nextLine();
+        int pizzaIndex;
+        try {
+            pizzaIndex = Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            printBadInput();
+            return;
+        }
         System.out.print("How many minutes in the making: ");
         int duration = in.nextInt();
         dataContext.createOrder(pizzaIndex, duration);
+        printOrders();
     }
 
     public void printPizzaMenu() {
-        printBlank();
+        printBlankScreen.print();
         var pizzas = dataContext.getPizzas();
         printPizzaMenu.print(pizzas);
     }
 
    public void removeOrder() {
+       var numberOfOrders = dataContext.getPendingOrders().size();
+       if(numberOfOrders<= 0){
+           printBlankScreen();
+           return;
+       }
         printOrders();
         System.out.println(" ");
         System.out.print(red+"Remove order: \n"+fReset);
@@ -73,6 +85,11 @@ public class UI {
    }
 
     public void markAsFinished(){
+        var numberOfOrders = dataContext.getPendingOrders().size();
+        if(numberOfOrders<= 0){
+            printOrders();
+            return;
+        }
         printOrders();
         System.out.println(" ");
         System.out.print(red+"Mark as finished: \n"+fReset);
@@ -80,6 +97,7 @@ public class UI {
         try {
             dataContext.finishOrder(orderID);
         } catch (OrderNotFoundException e) {}
+        printBlankScreen();
     }
 
     public void clearScreen(){
@@ -93,16 +111,20 @@ public class UI {
 
     public void printOrders() {
         var orders = dataContext.getPendingOrders();
-        printBlankScren.print();
+        printBlankScreen.print();
         printOrderMenu.print(orders);
     }
 
-    public void shuttingDown() {
-        System.out.println(red+"PROGRAM SHUTTING DOWN!"+fReset);
+    public void printExitMessage() {
+        System.out.println(red+"See you!"+fReset);
     }
 
     public void printBadInput(){
-        printBlankScren.print();
-        System.out.println(red+"----Wrong input----\n"+fReset);
+        printBlankScreen.print();
+        System.out.println(red+blinkingCSI+"----Wrong input----" + fReset);
+    }
+
+    public void printBlankScreen(){
+        printBlankScreen.print();
     }
 }

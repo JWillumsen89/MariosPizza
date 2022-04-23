@@ -10,10 +10,18 @@ public class PrintOrderMenu {
     public String green = "\u001B[32m";
     public String blue = "\u001B[34m";
     public String red = "\u001B[31m";
+    private final String blinkingCSI = "\u001B[6m";
 
     private void printMenuHeader(){
         lineSpace();
         System.out.println(green+"\nPENDING ORDERS\n"+fReset+"---------------------------------------");
+    }
+
+    private String formatString(String str, Order order){
+        if(order.overdue())
+            return red + blinkingCSI + str + fReset;
+        else
+            return green + str + fReset;
     }
 
     private List<String> toStrings(List<Order> orders){
@@ -26,7 +34,8 @@ public class PrintOrderMenu {
             var pizzaIndex = order.getPizzaIndex();
             var str = String.format("(%d) Pizza: %-15d  ETA: %s",
                     orderID,pizzaIndex,orderTime);
-            strings.add(str);
+            var formatted = formatString(str,order);
+            strings.add(formatted);
 
         }
         return strings;
@@ -46,7 +55,7 @@ public class PrintOrderMenu {
 
     private void printEmptyMenu(){
         lineSpace();
-        System.out.println(red+"                                 -----------------No pending orders at the moment!------------------"+fReset);
+        System.out.println(red + blinkingCSI +"                                 -----------------No pending orders at the moment!------------------"+fReset);
     }
 
     public void print(List<Order> orders){

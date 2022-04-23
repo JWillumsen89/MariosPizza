@@ -15,7 +15,7 @@ public class Marios {
   }
 
   private void shutDown(){
-    ui.shuttingDown();
+    ui.printExitMessage();
     dataContext.saveOrders();
     System.exit(0);
   }
@@ -35,10 +35,9 @@ public class Marios {
     ui.clearScreen();
     switch (decision) {
       case "1" -> {
+        ui.printPizzaMenu();
         ui.createNewOrder();
-        ui.printOrders();
       }
-      case "2" -> ui.printOrders();
       case "3" -> ui.printPizzaMenu();
       case "4" -> {
         ui.removeOrder();
@@ -46,7 +45,7 @@ public class Marios {
       }
       case "5" -> ui.markAsFinished();
       case "6" -> shutDown();
-      default -> ui.printBadInput();
+      default -> ui.printOrders();
     }
   }
 }

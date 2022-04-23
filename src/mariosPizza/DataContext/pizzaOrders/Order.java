@@ -83,4 +83,11 @@ public class Order implements Comparable<Order>, Serializable {
         finished = LocalTime.now();
         status = Status.Done;
     }
+
+    public boolean overdue(){
+        var currentTime = LocalTime.now();
+        if(currentTime.compareTo(estimatedTimeOfFinish) <= 0)
+            return false;
+        return true;
+    }
 }
