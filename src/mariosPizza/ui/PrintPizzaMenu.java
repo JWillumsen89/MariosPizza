@@ -11,9 +11,10 @@ public class PrintPizzaMenu {
     public String blue = "\u001B[34m";
     public String yellow = "\u001B[33m";
     private void lineSpace() {
-        LineSpacing lines = new LineSpacing();
-        lines.lines();
+        PrintBlankScreen lines = new PrintBlankScreen();
+        lines.print();
     }
+
     private List<String> formatPizzaStrings(List<Pizza> pizzas){
         var strings = new ArrayList<String>();
         for (var i = 0;i < pizzas.size();i++){
@@ -24,27 +25,40 @@ public class PrintPizzaMenu {
             var index = pizza.pizzaIndex;
             lineSpace();
             String str = String.format("(%d) %-15s %-75s %3d,-", index,name,topping,price);
-
             strings.add(str);
         }
         return strings;
     }
-    /*
-    public void lineSpace() {
-        LineSpacing lines = new LineSpacing();
-        lines.lines();
+
+    private int aggregatedLength(List<String> items){
+        var aggregatedLength = items.stream()
+                .map(String::length)
+                .reduce(0,(x,y) -> y = x > y ? x : y);
+        return aggregatedLength;
     }
 
-     */
+    private String buildHeader(int length){
+        var header = new StringBuilder("\33[33m");
+        var label = "PIZZA MENU";
+        var lengthOfDots = length - label.length();
+        for (var i = 0;i < lengthOfDots;i++)
+            header.append("-");
+        int medianIndex;
+        if(lengthOfDots % 2 == 0)
+            medianIndex = lengthOfDots / 2;
+        else
+            medianIndex = (lengthOfDots / 2) + 1;
+        header.insert(medianIndex,label);
+        header.append("\33[m");
+        return header.toString();
+    }
+
     public void print(List<Pizza> pizzas){
         var formattedStrings = formatPizzaStrings(pizzas);
-        System.out.println(yellow+"-------------------------------------------------PIZZA MENU-------------------------------------------\n"+fReset);
-        for (var str : formattedStrings){
-
+        var totalLength = aggregatedLength(formattedStrings);
+        var header = buildHeader(totalLength);
+        System.out.println(header);
+        for (var str : formattedStrings)
             System.out.println(str);
-
-        }
-        System.out.println("\n\n");
-
     }
 }

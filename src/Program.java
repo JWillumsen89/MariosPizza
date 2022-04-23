@@ -1,5 +1,3 @@
-package mariosPizza;
-
 import mariosPizza.ui.Marios;
 
 public class Program {

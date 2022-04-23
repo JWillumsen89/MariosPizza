@@ -1,11 +1,9 @@
 package mariosPizza.ui;
 
 import mariosPizza.DataContext.DataContext;
-
 import java.util.Scanner;
 
 public class Marios {
-  boolean programRunning = true;
   private final Scanner in = new Scanner(System.in);
   private final DataContext dataContext;
   private final UI ui;
@@ -13,6 +11,7 @@ public class Marios {
   public Marios() {
     dataContext = new DataContext();
     ui = new UI(dataContext);
+
   }
 
   private void shutDown(){
@@ -23,15 +22,17 @@ public class Marios {
 
   public void run() {
     ui.welcomeMessage();
-    ui.helpMenu();
+    ui.printMenu();
     while (true) {
+      ui.disableScroll();
       userDecision();
-      ui.helpMenu();
+      ui.printMenu();
     }
   }
   
   public void userDecision() {
     String decision = in.nextLine();
+    ui.clearScreen();
     switch (decision) {
       case "1" -> {
         ui.createNewOrder();
@@ -43,11 +44,9 @@ public class Marios {
         ui.removeOrder();
         ui.printOrders();
       }
-      case "5" -> System.out.println("Change order status");
+      case "5" -> ui.markAsFinished();
       case "6" -> shutDown();
-      default -> {
-        ui.lineSpace();
-        System.out.println(ui.red+"----Wrong input----\n"+ui.fReset);}
+      default -> ui.printBadInput();
     }
   }
 }

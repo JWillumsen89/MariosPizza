@@ -1,6 +1,5 @@
 package mariosPizza.DataContext.pizzaOrders;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +8,7 @@ public class PizzaOrders {
     private PersistOrders persist = new PersistOrders();
 
     public PizzaOrders(){
-        try {
-            orders = persist.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        orders = persist.read();
     }
 
     public List<Order> getPendingOrders()
@@ -44,10 +39,6 @@ public class PizzaOrders {
     }
 
     public void persist(){
-        try {
-            persist.save(orders);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        persist.save(orders);
     }
 }
