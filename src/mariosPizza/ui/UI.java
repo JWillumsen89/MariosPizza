@@ -56,6 +56,7 @@ public class UI {
         try {
             pizzaIndex = Integer.parseInt(input);
         } catch (NumberFormatException e){
+            clearScreen();
             printBadInput();
             return;
         }
@@ -66,7 +67,6 @@ public class UI {
     }
 
     public void printPizzaMenu() {
-        printBlankScreen.print();
         var pizzas = dataContext.getPizzas();
         printPizzaMenu.print(pizzas);
     }
@@ -79,7 +79,7 @@ public class UI {
        }
         printOrders();
         System.out.println(" ");
-        System.out.print(red+"Remove order: \n"+fReset);
+        System.out.print(red+"Remove order: "+fReset);
         int orderID = in.nextInt();
         dataContext.removeOrder(orderID);
    }
@@ -92,7 +92,7 @@ public class UI {
         }
         printOrders();
         System.out.println(" ");
-        System.out.print(red+"Mark as finished: \n"+fReset);
+        System.out.print(red+"Mark as finished: "+fReset);
         int orderID = in.nextInt();
         try {
             dataContext.finishOrder(orderID);
@@ -102,6 +102,7 @@ public class UI {
 
     public void clearScreen(){
         System.out.print("\33[2J\33[2H");
+        printBlankScreen();
         System.out.flush();
     }
 
@@ -111,7 +112,6 @@ public class UI {
 
     public void printOrders() {
         var orders = dataContext.getPendingOrders();
-        printBlankScreen.print();
         printOrderMenu.print(orders);
     }
 
@@ -120,8 +120,7 @@ public class UI {
     }
 
     public void printBadInput(){
-        printBlankScreen.print();
-        System.out.println(red+blinkingCSI+"----Wrong input----" + fReset);
+        System.out.println(red+blinkingCSI+"                                                         ----Wrong input----                " + fReset);
     }
 
     public void printBlankScreen(){
