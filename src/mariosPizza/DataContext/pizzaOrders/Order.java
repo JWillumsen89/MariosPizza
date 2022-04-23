@@ -12,7 +12,7 @@ public class Order implements Comparable<Order>, Serializable {
             return 1;
         else if(val == 0)
         {
-            if(pizzaIndex < order.pizzaIndex)
+            if(_pizzaIndex < order._pizzaIndex)
                 return 1;
             else
                 return -1;
@@ -27,12 +27,12 @@ public class Order implements Comparable<Order>, Serializable {
         Done
     }
 
-    private static int instanceIndex = 1;
+    private static int _instanceIndex = 1;
 
-    private int orderID;
+    private int _orderID;
 
     public int getOrderID() {
-        return orderID;
+        return _orderID;
     }
 
     private LocalTime estimatedTimeOfFinish;
@@ -51,20 +51,22 @@ public class Order implements Comparable<Order>, Serializable {
         return status == Status.Done;
     }
 
-    private final int pizzaIndex;
-    public int getPizzaIndex() {return pizzaIndex;}
+    private final int _pizzaIndex;
+    public int pizzaIndex() {return _pizzaIndex;}
 
     private final LocalTime created;
     private LocalTime started;
     private LocalTime finished;
 
     public Order(int pizzaIndex, int duration) {
-        this.pizzaIndex = pizzaIndex;
+        this._pizzaIndex = pizzaIndex;
         created = LocalTime.now();
         status = Status.Pending;
         estimatedTimeOfFinish = created.plus(duration,ChronoUnit.MINUTES);
-        orderID = instanceIndex++;
+        _orderID = _instanceIndex++;
     }
+
+    public static void setInstanceIndex(int instanceIndex) {_instanceIndex = instanceIndex;}
 
     public LocalTime getCreated() {return created;}
     public LocalTime getStarted() {return started;}

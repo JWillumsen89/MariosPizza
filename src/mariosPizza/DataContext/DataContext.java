@@ -11,20 +11,24 @@ public class DataContext {
     private PizzaOrders _pizzaOrders = new PizzaOrders();
     private PizzaContext _pizzaContext = new PizzaContext();
 
-    public List<Pizza> getPizzas() {
+    public List<Pizza> pizzas() {
         return _pizzaContext.getPizzas();
     }
 
-    public List<Order> getPendingOrders(){
-        return _pizzaOrders.getPendingOrders();
+    public List<Order> pendingOrders(){
+        return _pizzaOrders.pendingOrders();
     }
 
-    public List<Order> getOrdersInProgress(){
-        return _pizzaOrders.getOrdersInProgress();
+    public List<Order> ordersInProgress(){
+        return _pizzaOrders.ordersInProgress();
     }
 
-    public List<Order> getCompletedOrders(){
-        return _pizzaOrders.getCompletedOrders();
+    public List<Order> completedOrders(){
+        return _pizzaOrders.completedOrders();
+    }
+
+    public List<Order> orders(){
+        return _pizzaOrders.orders();
     }
 
     public void createOrder(int pizzaIndex, int duration){
@@ -39,7 +43,7 @@ public class DataContext {
         _pizzaOrders.getOrderByID(orderID).setFinished();
     }
 
-    public List<Pizza> getPizzasInProgress(){
+    public List<Pizza> pizzasInProgress(){
         var indexes = _pizzaOrders.getPizzaIndexesInProgress();
         var pizzas = _pizzaContext.getPizzas(indexes);
         return pizzas;

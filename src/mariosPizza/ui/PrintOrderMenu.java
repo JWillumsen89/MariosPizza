@@ -31,7 +31,7 @@ public class PrintOrderMenu {
             var orderID = order.getOrderID();
             var formatter = DateTimeFormatter.ofPattern("HH:mm");
             var orderTime = order.getEstimated().format(formatter);
-            var pizzaIndex = order.getPizzaIndex();
+            var pizzaIndex = order.pizzaIndex();
             var str = String.format("(%d) Pizza: %-15d  ETA: %s",
                     orderID,pizzaIndex,orderTime);
             var formatted = formatString(str,order);

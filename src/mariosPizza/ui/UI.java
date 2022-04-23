@@ -67,13 +67,13 @@ public class UI {
     }
 
     public void printPizzaMenu() {
-        var pizzas = dataContext.getPizzas();
+        var pizzas = dataContext.pizzas();
         printPizzaMenu.print(pizzas);
     }
 
    public void removeOrder() {
-       var numberOfOrders = dataContext.getPendingOrders().size();
-       if(numberOfOrders<= 0){
+       var numberOfOrders = dataContext.orders().size();
+       if(numberOfOrders <= 0){
            printBlankScreen();
            return;
        }
@@ -85,7 +85,7 @@ public class UI {
    }
 
     public void markAsFinished(){
-        var numberOfOrders = dataContext.getPendingOrders().size();
+        var numberOfOrders = dataContext.pendingOrders().size();
         if(numberOfOrders<= 0){
             printOrders();
             return;
@@ -96,8 +96,11 @@ public class UI {
         int orderID = in.nextInt();
         try {
             dataContext.finishOrder(orderID);
-        } catch (OrderNotFoundException e) {}
+        } catch (OrderNotFoundException e) {
+            return;
+        }
         printBlankScreen();
+        printOrders();
     }
 
     public void clearScreen(){
@@ -111,7 +114,7 @@ public class UI {
     }
 
     public void printOrders() {
-        var orders = dataContext.getPendingOrders();
+        var orders = dataContext.pendingOrders();
         printOrderMenu.print(orders);
     }
 
