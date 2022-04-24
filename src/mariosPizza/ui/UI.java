@@ -51,7 +51,7 @@ public class UI {
 
     public void createNewOrder() {
         System.out.print("Pick a pizza from menu: ");
-        var input = in.nextLine();
+        var input = in.next();
         int pizzaIndex;
         try {
             pizzaIndex = Integer.parseInt(input);

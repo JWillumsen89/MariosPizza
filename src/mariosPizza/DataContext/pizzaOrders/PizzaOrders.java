@@ -9,7 +9,7 @@ public class PizzaOrders {
     public PizzaOrders(){
         _orders = _persistence.read();
         if(!_orders.isEmpty())
-            Order.setInstanceIndex(_orders.size());
+            Order.setInstanceIndex(_orders.size() + 1);
     }
 
     public List<Order> pendingOrders() {return _orders.stream().filter(Order::isPending).sorted().toList();}
